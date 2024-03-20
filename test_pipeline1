@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out source code...'
+                // Add commands to checkout your source code from version control system
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Add commands to build your project (e.g., compile code, run tests)
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                // Add commands to run tests (unit tests, integration tests, etc.)
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                // Add commands to deploy your application (e.g., to staging or production environment)
+            }
+        }
+        stage('Cleanup') {
+            steps {
+                echo 'Cleaning up...'
+                // Add commands to clean up after the build (e.g., remove temporary files)
+            }
+        }
+    }
+}
+
