@@ -35,7 +35,7 @@ pipeline {
         stage('Create Test File') {
             steps {
                 echo 'Creating test file...'
-                sh 'touch /opt/test'
+                sh 'touch /tmp/test'
             }
         }
     }
