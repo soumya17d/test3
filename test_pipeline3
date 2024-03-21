@@ -11,13 +11,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'touch /tmp/test'
+                sh 'mv /root/test3/test_file1 /tmp/'
             }
 
         }
         stage('Test') {
             steps {
                 echo 'Running tests...'
+                sh 'ls -l /tmp/|grep -i test_file1'
                 // Add commands to run tests (unit tests, integration tests, etc.)
             }
         }
