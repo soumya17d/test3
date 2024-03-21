@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out the test repository...'
+                git 'git@github.com:soumya17d/test3.git'
+            }
+        }
+        stage('Deploy Test File') {
+            steps {
+                script {
+                    // Specify the name of the test file you want to deploy
+                    def testFileToDeploy = 'test2'
+
+                    // Deploy the specified test file to /tmp directory
+                    sh "cp ${testFileToDeploy} /tmp/"
+                    echo "Deployed ${testFileToDeploy} to /tmp/"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up or other post-build tasks can be added here
+        }
+    }
+}
+
