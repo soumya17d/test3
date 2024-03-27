@@ -31,7 +31,7 @@ pipeline {
                 script {
                     sh "git add ${FILE_TO_PUSH}"
                     sh "git commit -m 'Adding ${FILE_TO_PUSH}'"
-                    sh "git push"
+                    sh "git push origin HEAD:main"
                 }
             }
         }
