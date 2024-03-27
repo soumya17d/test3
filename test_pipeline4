@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define environment variables
         GIT_REPO = 'git@github.com:soumya17d/test3.git'
-        GIT_CREDENTIALS_ID = 'github_clone'
+        GIT_CREDENTIALS_ID = 'git_publickey'
         FILE_TO_PUSH = 'file.txt'
     }
     
