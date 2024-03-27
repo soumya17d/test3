@@ -3,8 +3,8 @@ pipeline {
     
     environment {
         // Define environment variables
-        GIT_REPO = 'https://github.com/yourusername/your-repo.git'
-        GIT_CREDENTIALS_ID = 'your-github-credentials-id'
+        GIT_REPO = 'git@github.com:soumya17d/test3.git'
+        GIT_CREDENTIALS_ID = 'github_clone'
         FILE_TO_PUSH = 'file.txt'
     }
     
@@ -14,7 +14,7 @@ pipeline {
                 // Checkout the GitHub repository
                 script {
                     checkout([$class: 'GitSCM',
-                              branches: [[name: '*/master']], // Specify branch to checkout
+                              branches: [[name: '*/main']], // Specify branch to checkout
                               userRemoteConfigs: [[url: GIT_REPO, credentialsId: GIT_CREDENTIALS_ID]]])
                 }
             }
@@ -31,7 +31,7 @@ pipeline {
                 script {
                     sh "git add ${FILE_TO_PUSH}"
                     sh "git commit -m 'Adding ${FILE_TO_PUSH}'"
-                    sh "git push origin master"
+                    sh "git push origin main"
                 }
             }
         }
