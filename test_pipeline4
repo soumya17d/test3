@@ -1,26 +1,40 @@
 pipeline {
     agent any
-
+    
+    environment {
+        // Define environment variables
+        GIT_REPO = 'https://github.com/yourusername/your-repo.git'
+        GIT_CREDENTIALS_ID = 'your-github-credentials-id'
+        FILE_TO_PUSH = 'file.txt'
+    }
+    
     stages {
         stage('Checkout') {
             steps {
-                echo 'Checking out the test repository...'
-                git 'git@github.com:soumya17d/test3.git'
+                // Checkout the GitHub repository
+                script {
+                    checkout([$class: 'GitSCM',
+                              branches: [[name: '*/master']], // Specify branch to checkout
+                              userRemoteConfigs: [[url: GIT_REPO, credentialsId: GIT_CREDENTIALS_ID]]])
+                }
             }
         }
-        stage('Deploy Test File') {
+        
+        stage('Push File') {
             steps {
+                // Create a file to push
                 script {
-                    // Specify the name of the test file you want to deploy
-                    def testFileToDeploy = 'test2'
-
-                    // Deploy the specified test file to /tmp directory
-                    sh "cp ${testFileToDeploy} /tmp/"
-                    echo "Deployed ${testFileToDeploy} to /tmp/"
+                    writeFile file: FILE_TO_PUSH, text: 'This is a test file'
+                }
+                
+                // Commit and push the file to the repository
+                script {
+                    sh "git add ${FILE_TO_PUSH}"
+                    sh "git commit -m 'Adding ${FILE_TO_PUSH}'"
+                    sh "git push origin master"
                 }
             }
         }
     }
-
 }
 
