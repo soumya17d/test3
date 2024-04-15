@@ -26,7 +26,6 @@ triggers {
                 }
             }
         } 
-    stages {
         stage('Checkout') {
             steps {
                 // Checkout the GitHub repository
@@ -37,7 +36,6 @@ triggers {
                 }
             }
         }
-     }
         stage('Transfer Repository to Local') {
             steps {
                 script {
