@@ -37,6 +37,7 @@ triggers {
                 }
             }
         }
+     }
         stage('Transfer Repository to Local') {
             steps {
                 script {
