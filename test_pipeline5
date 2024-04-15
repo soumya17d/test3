@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    triggers {
+        githubPush()
+    }
+    environment {
+        // Define environment variables
+        GIT_REPO = 'git@github.com:soumya17d/test3.git'
+        GIT_CREDENTIALS_ID = 'github_clone'
+        FILE_TO_PUSH = 'file.txt'
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the GitHub repository
+                script {
+                    checkout([$class: 'GitSCM',
+                              branches: [[name: '*/main']], // Specify branch to checkout
+                              userRemoteConfigs: [[url: GIT_REPO, credentialsId: GIT_CREDENTIALS_ID]]])
+                }
+            }
+        }
+        
+        stage('Transfer Repository to Local') {
+            steps {
+                script {
+                    // Transfer repository to local directory
+                    sh 'cp -r . /tmp'
+                }
+            }
+        }
+    }
+}
