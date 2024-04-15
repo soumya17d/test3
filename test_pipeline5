@@ -11,6 +11,21 @@ triggers {
         FILE_TO_PUSH = 'file.txt'
     }
     
+       stages {
+        stage('Check for Pull Request Merge') {
+            steps {
+                script {
+                    def lastCommit = sh(script: 'git log --format=%B -n 1 HEAD', returnStdout: true).trim()
+                    if (lastCommit.contains('Merge pull request')) {
+                        echo 'Pull request merged. Triggering the job.'
+                    } else {
+                        echo 'No pull request merge. Skipping the job.'
+                        currentBuild.result = 'ABORTED'
+                        return
+                    }
+                }
+            }
+        } 
     stages {
         stage('Checkout') {
             steps {
@@ -22,7 +37,6 @@ triggers {
                 }
             }
         }
-        
         stage('Transfer Repository to Local') {
             steps {
                 script {
