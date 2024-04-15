@@ -1,8 +1,8 @@
 pipeline {
     agent any
 
-    triggers {
-        githubPush()
+triggers {
+        pollSCM('* * * * *') // Polls SCM for changes every minute
     }
     environment {
         // Define environment variables
