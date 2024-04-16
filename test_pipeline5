@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        githubPullRequest(autoCloseNotMerged: false, branches: [[pattern: 'main']])
+        githubPullRequests(autoCloseNotMerged: false, branches: [[pattern: 'main']])
     }
     environment {
         // Define environment variables
