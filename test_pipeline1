@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    // commented
+    // commented out at 16 April 2024
     stages {
         stage('Checkout') {
             steps {
