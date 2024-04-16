@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     // Transfer repository to local directory
-                    sh 'cp -r . /tmp'
+                    sh 'cp -r . /tmp/jenkins'
                 }
             }
         }
