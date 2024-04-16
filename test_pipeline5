@@ -1,8 +1,8 @@
 pipeline {
     agent any
 
-triggers {
-        pollSCM('* * * * *') // Polls SCM for changes every minute
+    triggers {
+        githubPullRequest(autoCloseNotMerged: false, branches: [[pattern: 'main']])
     }
     environment {
         // Define environment variables
