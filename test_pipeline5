@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        githubPullRequests(triggerMode: 'CRON', cron: 'H/5 * * * *')
+        githubPush()
     }
     environment {
         // Define environment variables
