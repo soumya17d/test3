@@ -8,7 +8,6 @@ pipeline {
         // Define environment variables
         GIT_REPO = 'git@github.com:soumya17d/test3.git'
         GIT_CREDENTIALS_ID = 'github_clone'
-        FILE_TO_PUSH = 'file.txt'
     }
     
        stages {
